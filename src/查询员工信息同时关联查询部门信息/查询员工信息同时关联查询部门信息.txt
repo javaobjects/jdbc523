@@ -1,0 +1,14 @@
+
+
+数据列表如下：
+
+员工编号     员工姓名        职位           入职日期                     工资                 部门名称
+7566    JONES  MANAGER   2019-2-13    2975.00    ACCOUNT
+
+sql语句如下：
+select e.empno,e.ename,e.job,e.hiredate,e.sal,d.dname
+from emp e,dept d
+where e.deptno=d.deptno and e.empno=?
+
+
+关键是创建多一个Dept类，然后建立Emp与Dept之间的关联关系，大家可以参考代码。
