@@ -89,6 +89,24 @@ public class EmpDao {
 //	3.查询所有员工的总工资 √
 	public Double querySumSal() {
 		Double sal = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String query_sumSal = "select sum(sal) from emp";
+		
+		try {
+			conn = DBUtil.getConnection();//获取链接的方法
+			stmt = conn.createStatement();//创建执行SQL语句的命令对象
+			rs = stmt.executeQuery(query_sumSal);//执行sql语句
+			if(rs.next()) {
+				sal = rs.getDouble("sum(sal)");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.release(conn, stmt, rs);
+		}
 		return sal;
 	}
 
