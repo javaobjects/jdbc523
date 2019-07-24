@@ -63,8 +63,25 @@ public class EmpDao {
 		return emp;
 	}
 //	2.根据id查询某个员工的工资  √
+	//因为没有id所以我理解成empno
 	public Double querySalByEmpno(Integer empno) {
 		Double sal = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String query_sal_by_empno = "select sal from emp where empno = " + empno;
+		try {
+			conn = DBUtil.getConnection();//获取连接方法
+			stmt = conn.createStatement();//创建执行sql语句的命令对象
+			rs = stmt.executeQuery(query_sal_by_empno);//执行sql语句
+			if(rs.next()) {
+				sal = rs.getDouble("sal");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.release(conn, stmt, rs);
+		}
 		return sal;
 	}
 
