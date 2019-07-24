@@ -1,4 +1,4 @@
-package jdbc522;
+package jdbc连接数据库;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
